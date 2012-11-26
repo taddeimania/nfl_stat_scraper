@@ -1,0 +1,33 @@
+This is a site scraper for a very popular sports news website to obtain a database of football stats
+from 2008-2012 for every player that touched the field.
+
+The stat model is very rudimentary and can probably be optimized for player positions (i.e. why
+would we care about a quarterback's kick return stat?).  Also the player and team models could
+use for some additional data, but this revision contains just stats.
+
+INSTRUCTIONS
+=====================
+These instructions assume you have python, virtualenv(wrappers.sh), pip, and mysql installed.  If you don't seek their
+respective documents.
+
+CLONE ME
+
+mkvirtualenv virtualenv_name
+
+pip install -r requirements.txt
+
+-- edit the settings.py to use your database settings --
+
+python manage.py syncdb
+
+mysql -u user -ppass database_name < initial_data.sql
+
+python manage.py runserver
+
+Then point your browser at http://localhost:8000 and watch your database get filled with stats.
+
+NOTES:
+====================
+If anything happens during the stat pull down you should probably do a full truncate of the stat table.
+
+Todo: Allow stats to create or update themselves on future copies.
