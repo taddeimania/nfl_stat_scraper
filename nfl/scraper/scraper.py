@@ -49,7 +49,7 @@ class StatScraper(object):
         for record in self.players:
             # get or create (new or update) player and stat objects to be updated with our stat stream
             player, _ = scraper_models.Player.objects.get_or_create(name=record['Player'], team=self.team)
-            stat, _ = scraper_models.Stat.objects.get_or_create(player=player, team__season=self.season)
+            stat, _ = scraper_models.Stat.objects.get_or_create(player=player, player__team__season=self.season)
 
             for record_key in record.keys():
                 # we just want to use the above player we grabbed
